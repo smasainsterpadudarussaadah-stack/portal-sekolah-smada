@@ -1005,9 +1005,9 @@ export default function SchoolPortalPage() {
       )}
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-5 px-4 text-center text-xs">
-        © {new Date().getFullYear()} {settings.school_name}. Semua hak dilindungi.
-      </footer>
+<footer className="bg-slate-900 text-slate-300 py-5 px-4 text-center text-xs">
+  © 2026 {settings.school_name}. Semua hak dilindungi.
+</footer>
     </div>
   );
 }
