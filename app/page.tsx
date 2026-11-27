@@ -938,7 +938,7 @@ export default function SchoolPortalPage() {
                     </div>
                   </div>
                 </div>
-</div>
+
                 {/* Daftar Pendaftar PPDB */}
                 <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
                   <h2 className="font-bold text-lg text-slate-900">Data Pendaftar PPDB</h2>
