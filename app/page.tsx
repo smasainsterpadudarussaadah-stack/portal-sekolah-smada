@@ -44,12 +44,11 @@ interface StaffItem {
   subject_or_unit: string;
 }
 
-interface PpdbItem {
+interface ContactMessageItem {
   id: string;
-  student_name: string;
-  origin_school: string;
-  parent_phone: string;
-  status: string;
+  sender_name: string;
+  contact_info: string;
+  message: string;
   created_at?: string;
 }
 
@@ -79,7 +78,7 @@ export default function SchoolPortalPage() {
   const [posts, setPosts] = useState<PostItem[]>([]);
   const [staff, setStaff] = useState<StaffItem[]>([]);
   const [ppdbList, setPpdbList] = useState<PpdbItem[]>([]);
-
+const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -223,6 +222,7 @@ export default function SchoolPortalPage() {
     await supabase.auth.signOut();
     setUserEmail(null);
     setPpdbList([]);
+    setContactList([]);
     notify('ok', 'Anda telah keluar dari akun admin.');
   };
 
