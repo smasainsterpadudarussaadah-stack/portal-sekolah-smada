@@ -366,7 +366,7 @@ export default function SchoolPortalPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
       {/* Navbar */}
-      <header className="bg-emerald-900 text-white sticky top-0 z-30 shadow">
+      <header className="bg-blue-900 text-white sticky top-0 z-30 shadow">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <button
             onClick={() => setActiveTab('home')}
@@ -392,7 +392,7 @@ export default function SchoolPortalPage() {
               <p className="font-bold text-sm sm:text-base leading-tight">
                 {settings.school_name}
               </p>
-              <p className="text-[11px] text-emerald-200 hidden sm:block">
+              <p className="text-[11px] text-blue-200 hidden sm:block">
                 Portal Informasi & Layanan Digital Sekolah
               </p>
             </div>
@@ -409,8 +409,8 @@ export default function SchoolPortalPage() {
                   onClick={() => setActiveTab(item.id)}
                   className={`px-3 py-1.5 rounded-lg text-sm flex items-center gap-1.5 transition ${
                     active
-                      ? 'bg-emerald-700 text-white font-medium'
-                      : 'text-emerald-100 hover:bg-emerald-800'
+                      ? 'bg-blue-700 text-white font-medium'
+                      : 'text-blue-100 hover:bg-blue-800'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -442,7 +442,7 @@ export default function SchoolPortalPage() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="md:hidden p-2 rounded-lg hover:bg-emerald-800"
+            className="md:hidden p-2 rounded-lg hover:bg-blue-800"
             aria-label="Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -461,7 +461,7 @@ export default function SchoolPortalPage() {
                     setActiveTab(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full px-3 py-2 rounded-lg text-sm text-left flex items-center gap-2 hover:bg-emerald-900"
+                  className="w-full px-3 py-2 rounded-lg text-sm text-left flex items-center gap-2 hover:bg-blue-900"
                 >
                   <Icon className="w-4 h-4" />
                   {item.label}
@@ -483,7 +483,7 @@ export default function SchoolPortalPage() {
                 setShowConnectModal(true);
                 setMobileMenuOpen(false);
               }}
-              className="w-full px-3 py-2 rounded-lg text-sm text-left bg-emerald-900 text-emerald-200 flex items-center gap-2"
+              className="w-full px-3 py-2 rounded-lg text-sm text-left bg-blue-900 text-blue-200 flex items-center gap-2"
             >
               <Database className="w-4 h-4" />
               {supabase ? 'Supabase Terhubung' : 'Koneksikan Supabase'}
@@ -516,14 +516,14 @@ export default function SchoolPortalPage() {
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
         {activeTab === 'home' && (
           <div className="space-y-8">
-            <section className="bg-gradient-to-br from-emerald-800 to-emerald-950 text-white rounded-2xl p-6 sm:p-10 shadow-sm">
+            <section className="bg-gradient-to-br from-blue-800 to-blue-950 text-white rounded-2xl p-6 sm:p-10 shadow-sm">
               <p className="text-xs uppercase tracking-wider text-amber-300 font-semibold mb-2">
                 Selamat Datang di Portal Resmi
               </p>
               <h1 className="text-2xl sm:text-4xl font-bold leading-tight">
                 {settings.school_name}
               </h1>
-              <p className="mt-3 text-emerald-100 text-sm sm:text-base max-w-2xl">
+              <p className="mt-3 text-blue-100 text-sm sm:text-base max-w-2xl">
                 {settings.tagline}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -665,7 +665,7 @@ export default function SchoolPortalPage() {
               </div>
               <button
                 type="submit"
-                className="w-full py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm"
+                className="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm"
               >
                 Kirim Pendaftaran
               </button>
@@ -714,7 +714,7 @@ export default function SchoolPortalPage() {
               </div>
               <button
                 type="submit"
-                className="w-full py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm"
+                className="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm"
               >
                 Kirim Pesan
               </button>
@@ -754,7 +754,7 @@ export default function SchoolPortalPage() {
                   <button
                     type="submit"
                     disabled={authLoading}
-                    className="w-full py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white font-semibold text-sm disabled:opacity-60"
+                    className="w-full py-2.5 rounded-xl bg-blue-800 hover:bg-blue-900 text-white font-semibold text-sm disabled:opacity-60"
                   >
                     {authLoading ? 'Memproses...' : 'Masuk ke Dashboard'}
                   </button>
@@ -824,7 +824,7 @@ export default function SchoolPortalPage() {
                   </div>
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold"
+                    className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold"
                   >
                     Simpan Profil Sekolah
                   </button>
@@ -862,7 +862,7 @@ export default function SchoolPortalPage() {
                       />
                       <button
                         type="submit"
-                        className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold inline-flex items-center gap-1.5"
+                        className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold inline-flex items-center gap-1.5"
                       >
                         <Plus className="w-4 h-4" />
                         Tambah
@@ -916,7 +916,7 @@ export default function SchoolPortalPage() {
                       />
                       <button
                         type="submit"
-                        className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold inline-flex items-center gap-1.5"
+                        className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold inline-flex items-center gap-1.5"
                       >
                         <Plus className="w-4 h-4" />
                         Tambah
@@ -1021,7 +1021,7 @@ export default function SchoolPortalPage() {
             <div className="flex justify-end gap-2 pt-2">
               <button
                 onClick={() => setShowConnectModal(false)}
-                className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold"
+                className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold"
               >
                 Simpan & Terapkan
               </button>
