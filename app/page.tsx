@@ -938,7 +938,7 @@ export default function SchoolPortalPage() {
                     </div>
                   </div>
                 </div>
-</div>
+
                 {/* Daftar Pendaftar PPDB */}
                 <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
                   <h2 className="font-bold text-lg text-slate-900">Data Pendaftar PPDB</h2>
@@ -969,38 +969,42 @@ export default function SchoolPortalPage() {
                     </div>
                   )}
                 </div>
+
+                {/* Pesan Masuk */}
+                <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
+                  <h2 className="font-bold text-lg text-slate-900">Pesan Masuk (Hubungi Kami)</h2>
+                  {contactList.length === 0 ? (
+                    <p className="text-sm text-slate-500">Belum ada pesan masuk.</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm text-left">
+                        <thead className="border-b text-slate-500 text-xs">
+                          <tr>
+                            <th className="py-2 pr-4">Nama Pengirim</th>
+                            <th className="py-2 pr-4">Kontak</th>
+                            <th className="py-2 pr-4">Pesan</th>
+                            <th className="py-2">Waktu</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {contactList.map((row) => (
+                            <tr key={row.id}>
+                              <td className="py-2.5 pr-4 font-medium">{row.sender_name}</td>
+                              <td className="py-2.5 pr-4">{row.contact_info}</td>
+                              <td className="py-2.5 pr-4 whitespace-pre-line">{row.message}</td>
+                              <td className="py-2.5 text-xs text-slate-500">
+                                {row.created_at
+                                  ? new Date(row.created_at).toLocaleString('id-ID')
+                                  : '-'}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
               </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
-            <h2 className="font-bold text-lg text-slate-900">Pesan Masuk (Hubungi Kami)</h2>
-            {contactList.length === 0 ? (
-              <p className="text-sm text-slate-500">Belum ada pesan masuk.</p>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left">
-                  <thead className="border-b text-slate-500 text-xs">
-                    <tr>
-                      <th className="py-2 pr-4">Nama Pengirim</th>
-                      <th className="py-2 pr-4">Kontak</th>
-                      <th className="py-2 pr-4">Pesan</th>
-                      <th className="py-2">Waktu</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {contactList.map((row) => (
-                      <tr key={row.id}>
-                        <td className="py-2.5 pr-4 font-medium">{row.sender_name}</td>
-                        <td className="py-2.5 pr-4">{row.contact_info}</td>
-                        <td className="py-2.5 pr-4 whitespace-pre-line">{row.message}</td>
-                        <td className="py-2.5 text-xs text-slate-500">
-                          {row.created_at ? new Date(row.created_at).toLocaleString('id-ID') : '-'}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
             )}
           </div>
         )}
