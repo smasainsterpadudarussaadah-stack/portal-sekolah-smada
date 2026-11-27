@@ -547,7 +547,7 @@ export default function SchoolPortalPage() {
     QRIS Pendaftaran / Pembayaran PPDB
   </p>
   <img
-    src="https://supabase.com/dashboard/project/banaxebevmxlzpvjbnii/storage/files/buckets/BARCODE-PPDB?preview=SPMB+SMA+DARUSSA+ADAH.png"
+    src="https://banaxebevmxlzpvjbnii.supabase.co/storage/v1/object/public/BARCODE-PPDB/SPMB%20SMA%20DARUSSA%20ADAH.png"
     alt="QRIS Pendaftaran SMA Sains Terpadu Darussaadah Pace"
     className="h-44 w-44 rounded object-contain bg-white p-1"
   />
