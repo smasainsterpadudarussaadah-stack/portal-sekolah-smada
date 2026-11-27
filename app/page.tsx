@@ -385,24 +385,8 @@ export default function SchoolPortalPage() {
                 Portal Informasi & Layanan Digital Sekolah
               </p>
             </div>
-          <button
-            onClick={() => setActiveTab('home')}
-            className="flex items-center gap-3 text-left"
-          >
-            <img
-              src="https://banaxebevmxkzpvjbnii.supabase.co/storage/v1/object/public/BARCODE-PPDB/0.png"
-              alt="Logo SMA Sains Terpadu Darussaadah Pace"
-              className="h-10 w-10 object-contain shrink-0"
-            />
-            <div>
-              <p className="font-bold text-sm sm:text-base leading-tight">
-                {settings.school_name}
-              </p>
-              <p className="text-[11px] text-blue-200 hidden sm:block">
-                Portal Informasi & Layanan Digital Sekolah
-              </p>
-            </div>
           </button>
+          
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
