@@ -370,13 +370,22 @@ export default function SchoolPortalPage() {
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <button
             onClick={() => setActiveTab('home')}
-            className="flex items-center gap-2.5 text-left"
+            className="flex items-center gap-3 text-left"
           >
-            <div className="w-9 h-9 rounded-lg bg-emerald-700 flex items-center justify-center shrink-0">
-             <img
-  src="https://banaxebevmxlzpvjbnii.supabase.co/storage/v1/object/public/BARCODE-PPDB/0.png"
-  alt="Logo SMA Sains Terpadu Darussaadah Pace"
-  className="w-7 h-7 object-contain"
+            <img
+              src="https://banaxebevmxlzpvjbnii.supabase.co/storage/v1/object/public/BARCODE-PPDB/0.png"
+              alt="Logo SMA Sains Terpadu Darussaadah Pace"
+              className="h-10 w-10 object-contain shrink-0"
+            />
+            <div>
+              <p className="font-bold text-sm sm:text-base leading-tight">
+                {settings.school_name}
+              </p>
+              <p className="text-[11px] text-blue-200 hidden sm:block">
+                Portal Informasi & Layanan Digital Sekolah
+              </p>
+            </div>
+          </button>
 />
             </div>
             <div>
