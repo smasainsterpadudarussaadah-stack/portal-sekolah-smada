@@ -373,7 +373,11 @@ export default function SchoolPortalPage() {
             className="flex items-center gap-2.5 text-left"
           >
             <div className="w-9 h-9 rounded-lg bg-emerald-700 flex items-center justify-center shrink-0">
-              <School className="w-5 h-5 text-amber-300" />
+             <img
+  src="https://banaxebevmxlzpvjbnii.supabase.co/storage/v1/object/public/BARCODE-PPDB/0.png"
+  alt="Logo SMA Sains Terpadu Darussaadah Pace"
+  className="w-7 h-7 object-contain"
+/>
             </div>
             <div>
               <p className="font-bold text-sm sm:text-base leading-tight">
