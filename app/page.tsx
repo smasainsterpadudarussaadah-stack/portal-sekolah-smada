@@ -156,8 +156,14 @@ export default function SchoolPortalPage() {
           .select('*')
           .order('created_at', { ascending: false });
         if (ppdbData) setPpdbList(ppdbData);
+        const { data: contactsData } = await client
+      .from('contact_messages')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (contactsData) setContactList(contactsData);
       } else {
         setPpdbList([]);
+        setContactList([]);
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Gagal memuat data Supabase.';
