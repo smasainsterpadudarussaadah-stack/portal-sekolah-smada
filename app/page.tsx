@@ -542,6 +542,19 @@ export default function SchoolPortalPage() {
               <div className="bg-white p-5 rounded-xl border border-slate-200">
                 <h2 className="font-semibold text-slate-900">Informasi PPDB</h2>
                 <p className="text-sm text-slate-600 mt-1">{settings.ppdb_info}</p>
+                <div className="mt-4 flex flex-col items-center rounded-lg border border-slate-200 bg-slate-50 p-3 text-center">
+  <p className="mb-2 text-xs font-semibold text-slate-800">
+    QRIS Pendaftaran / Pembayaran PPDB
+  </p>
+  <img
+    src="https://supabase.com/dashboard/project/banaxebevmxlzpvjbnii/storage/files/buckets/BARCODE-PPDB?preview=SPMB+SMA+DARUSSA+ADAH.png"
+    alt="QRIS Pendaftaran SMA Sains Terpadu Darussaadah Pace"
+    className="h-44 w-44 rounded object-contain bg-white p-1"
+  />
+  <p className="mt-2 text-[11px] text-slate-600">
+    Scan QRIS untuk pendaftaran & pembayaran PPDB
+  </p>
+</div>
               </div>
             </section>
           </div>
