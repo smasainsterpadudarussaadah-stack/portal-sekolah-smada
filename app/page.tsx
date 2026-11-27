@@ -342,7 +342,7 @@ export default function SchoolPortalPage() {
     }
     const { error } = await supabase.from('contact_messages').insert({
       sender_name: senderName.trim(),
-      sender_contact: senderContact.trim(),
+      contact_info: senderContact.trim(),
       message: messageText.trim(),
     });
     if (error) {
