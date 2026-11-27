@@ -43,6 +43,14 @@ interface StaffItem {
   role: string;
   subject_or_unit: string;
 }
+interface PpdbItem {
+  id: string;
+  student_name: string;
+  origin_school: string;
+  parent_phone: string;
+  status: string;
+  created_at?: string;
+}
 
 interface ContactMessageItem {
   id: string;
