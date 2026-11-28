@@ -950,6 +950,23 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
                         placeholder="Mata pelajaran / unit kerja"
                         className="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"
                       />
+                      <div className="space-y-1">
+            <label className="block text-xs font-medium text-slate-600">
+              Foto Guru / Staf (Opsional)
+            </label>
+            <input
+              key={staffPhotoFile ? staffPhotoFile.name : 'empty-photo'}
+              type="file"
+              accept="image/*"
+              onChange={(e) => setStaffPhotoFile(e.target.files?.[0] || null)}
+              className="block w-full text-sm text-slate-600 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            />
+            {staffPhotoFile && (
+              <p className="text-xs text-slate-500">
+                File dipilih: {staffPhotoFile.name}
+              </p>
+            )}
+          </div>
                       <button
                         type="submit"
                         className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold inline-flex items-center gap-1.5"
