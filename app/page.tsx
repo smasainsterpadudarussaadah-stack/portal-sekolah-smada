@@ -42,6 +42,7 @@ interface StaffItem {
   name: string;
   role: string;
   subject_or_unit: string;
+  photo_url?: string | null;
 }
 interface PpdbItem {
   id: string;
@@ -115,6 +116,8 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
   const [staffName, setStaffName] = useState('');
   const [staffRole, setStaffRole] = useState('Guru Mapel');
   const [staffUnit, setStaffUnit] = useState('');
+  const [staffPhotoFile, setStaffPhotoFile] = useState<File | null>(null);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
   const supabase: SupabaseClient | null = useMemo(() => {
     if (!supabaseUrl.trim() || !supabaseKey.trim()) return null;
@@ -300,16 +303,46 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
       notify('err', 'Silakan login admin terlebih dahulu.');
       return;
     }
+
+    let photoUrl: string | null = null;
+
+    if (staffPhotoFile) {
+      setUploadingPhoto(true);
+      const fileExt = staffPhotoFile.name.split('.').pop()?.toLowerCase() || 'jpg';
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
+      const filePath = `guru/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('staff-photos')
+        .upload(filePath, staffPhotoFile, { upsert: false });
+
+      setUploadingPhoto(false);
+
+      if (uploadError) {
+        notify('err', `Gagal mengunggah foto: ${uploadError.message}`);
+        return;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from('staff-photos')
+        .getPublicUrl(filePath);
+
+      photoUrl = publicUrlData.publicUrl;
+    }
+
     const { error } = await supabase.from('staff').insert({
       name: staffName.trim(),
       role: staffRole,
       subject_or_unit: staffUnit.trim(),
+      photo_url: photoUrl,
     });
+
     if (error) {
       notify('err', `Gagal menambah guru/staf: ${error.message}`);
     } else {
       setStaffName('');
       setStaffUnit('');
+      setStaffPhotoFile(null);
       notify('ok', 'Data guru/staf berhasil ditambahkan.');
       loadPortalData(supabase, true);
     }
