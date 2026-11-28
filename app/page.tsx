@@ -658,11 +658,19 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
                     className="bg-white p-5 rounded-xl border border-slate-200 space-y-2"
                   >
                     {post.image_url && (
-                    <img
-                      src={post.image_url}
-                      alt={post.title}
-                      className="w-full h-44 object-cover rounded-xl border border-slate-200"
-                    />
+                    <a
+                      href={post.image_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Klik untuk melihat gambar ukuran penuh"
+                      className="block overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
+                    >
+                      <img
+                        src={post.image_url}
+                        alt={post.title}
+                        className="w-full h-auto max-h-[420px] object-contain mx-auto"
+                      />
+                    </a>
                   )}
                     <span className="inline-block text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-medium">
                       {post.category}
