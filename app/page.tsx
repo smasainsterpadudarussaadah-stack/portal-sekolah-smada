@@ -330,6 +330,7 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
     }
   };
 
+const handleAddPost = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!supabase || !userEmail) {
       notify('err', 'Silakan login admin terlebih dahulu.');
