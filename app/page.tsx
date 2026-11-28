@@ -29,12 +29,13 @@ interface SchoolSettings {
   ppdb_info: string;
 }
 
-interface PostItem {
+ interface PostItem {
   id: string;
   title: string;
   category: string;
   content: string;
   created_at?: string;
+  image_url?: string | null;
 }
 
 interface StaffItem {
@@ -111,6 +112,8 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
   const [postTitle, setPostTitle] = useState('');
   const [postCategory, setPostCategory] = useState('Pengumuman');
   const [postContent, setPostContent] = useState('');
+  const [postImageFile, setPostImageFile] = useState<File | null>(null);
+  const [uploadingPostImage, setUploadingPostImage] = useState(false);
 
   // Form Admin Guru/Staf
   const [staffName, setStaffName] = useState('');
@@ -297,6 +300,57 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
     }
   };
 
+  const handleAddPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!supabase || !userEmail) {
+      notify('err', 'Silakan login admin terlebih dahulu.');
+      return;
+    }
+
+    let imageUrl: string | null = null;
+
+    if (postImageFile) {
+      setUploadingPostImage(true);
+      const fileExt = postImageFile.name.split('.').pop()?.toLowerCase() || 'jpg';
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
+      const filePath = `berita/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-photos')
+        .upload(filePath, postImageFile, { upsert: false });
+
+      setUploadingPostImage(false);
+
+      if (uploadError) {
+        notify('err', `Gagal mengunggah gambar berita: ${uploadError.message}`);
+        return;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from('post-photos')
+        .getPublicUrl(filePath);
+
+      imageUrl = publicUrlData.publicUrl;
+    }
+
+    const { error } = await supabase.from('posts').insert({
+      title: postTitle.trim(),
+      category: postCategory,
+      content: postContent.trim(),
+      image_url: imageUrl,
+    });
+
+    if (error) {
+      notify('err', `Gagal menambah berita/pengumuman: ${error.message}`);
+    } else {
+      setPostTitle('');
+      setPostCategory('Pengumuman');
+      setPostContent('');
+      setPostImageFile(null);
+      notify('ok', 'Berita/pengumuman berhasil ditambahkan.');
+      loadPortalData(supabase, true);
+    }
+  };
   const handleAddStaff = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!supabase || !userEmail) {
@@ -623,6 +677,13 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
                     key={post.id}
                     className="bg-white p-5 rounded-xl border border-slate-200 space-y-2"
                   >
+                    {post.image_url && (
+                    <img
+                      src={post.image_url}
+                      alt={post.title}
+                      className="w-full h-44 object-cover rounded-xl border border-slate-200"
+                    />
+                  )}
                     <span className="inline-block text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-medium">
                       {post.category}
                     </span>
@@ -911,6 +972,23 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
                         placeholder="Isi berita/pengumuman..."
                         className="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"
                       />
+                      <div className="space-y-1">
+            <label className="block text-xs font-medium text-slate-600">
+              Gambar Berita / Pengumuman (Opsional)
+            </label>
+            <input
+              key={postImageFile ? postImageFile.name : 'empty-post-image'}
+              type="file"
+              accept="image/*"
+              onChange={(e) => setPostImageFile(e.target.files?.[0] || null)}
+              className="block w-full text-sm text-slate-600 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            />
+            {postImageFile && (
+              <p className="text-xs text-slate-500">
+                File dipilih: {postImageFile.name}
+              </p>
+            )}
+          </div>
                       <button
                         type="submit"
                         className="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold inline-flex items-center gap-1.5"
