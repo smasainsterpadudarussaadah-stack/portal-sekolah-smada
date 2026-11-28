@@ -649,10 +649,25 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
                     key={person.id}
                     className="bg-white p-5 rounded-xl border border-slate-200"
                   >
-                    <h2 className="font-bold text-slate-900">{person.name}</h2>
-                    <p className="text-sm text-emerald-700 font-medium mt-0.5">{person.role}</p>
-                    <p className="text-xs text-slate-500 mt-1">{person.subject_or_unit}</p>
+                  <div className="flex items-center gap-3.5">
+                    {person.photo_url ? (
+                      <img
+                        src={person.photo_url}
+                        alt={person.name}
+                        className="w-14 h-14 rounded-full object-cover border border-slate-200 shrink-0"
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center text-sm font-bold shrink-0">
+                        {person.name?.charAt(0)?.toUpperCase() || 'G'}
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <h2 className="font-bold text-slate-900 truncate">{person.name}</h2>
+                      <p className="text-sm text-emerald-700 font-medium mt-0.5">{person.role}</p>
+                      <p className="text-xs text-slate-500 mt-1 truncate">{person.subject_or_unit}</p>
+                    </div>
                   </div>
+                </div>
                 ))}
               </div>
             )}
