@@ -330,57 +330,7 @@ const [contactList, setContactList] = useState<ContactMessageItem[]>([]);
     }
   };
 
-const handleAddPost = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!supabase || !userEmail) {
-      notify('err', 'Silakan login admin terlebih dahulu.');
-      return;
-    }
 
-    let imageUrl: string | null = null;
-
-    if (postImageFile) {
-      setUploadingPostImage(true);
-      const fileExt = postImageFile.name.split('.').pop()?.toLowerCase() || 'jpg';
-      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
-      const filePath = `berita/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('post-photos')
-        .upload(filePath, postImageFile, { upsert: false });
-
-      setUploadingPostImage(false);
-
-      if (uploadError) {
-        notify('err', `Gagal mengunggah gambar berita: ${uploadError.message}`);
-        return;
-      }
-
-      const { data: publicUrlData } = supabase.storage
-        .from('post-photos')
-        .getPublicUrl(filePath);
-
-      imageUrl = publicUrlData.publicUrl;
-    }
-
-    const { error } = await supabase.from('posts').insert({
-      title: postTitle.trim(),
-      category: postCategory,
-      content: postContent.trim(),
-      image_url: imageUrl,
-    });
-
-    if (error) {
-      notify('err', `Gagal menambah berita/pengumuman: ${error.message}`);
-    } else {
-      setPostTitle('');
-      setPostCategory('Pengumuman');
-      setPostContent('');
-      setPostImageFile(null);
-      notify('ok', 'Berita/pengumuman berhasil ditambahkan.');
-      loadPortalData(supabase, true);
-    }
-  };
   const handleAddStaff = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!supabase || !userEmail) {
